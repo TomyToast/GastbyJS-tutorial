@@ -1,5 +1,23 @@
-import React from 'react'
-import styled from 'styled-components';
+import React, {Fragment} from 'react'
+import styled, {createGlobalStyle} from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat';
+    color: white;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+`;
+
+const H1 = styled.h1`
+  font-size: ${({isBig}) => isBig ? '5em' : '3em'};
+  color: ${({isBlue}) => isBlue ? 'blue' : 'white'};
+`;
 
 const StyledWrapper = styled.div`
   height: 100vh;
@@ -8,29 +26,16 @@ const StyledWrapper = styled.div`
   align-items: center;
   background: pink;
   posision: relative;
-
-  @media (min-width: 400px) {
-    background: blue;
-  }
-
-  ::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    border: 5px solid grey;
-    border-radius: 50px;
-    content: '';
-    width: 50px;
-    height: 50px;
-    display: block;
-    background: yellow;
-  }
 `;
 
 const IndexPage = () => (
-  <StyledWrapper>
-    <h1>Hi people</h1>
-  </StyledWrapper>
+  <Fragment>
+    <GlobalStyle />
+    <StyledWrapper>
+      <H1 isBig>Hi people</H1>
+      <H1 isBlue>Hi people</H1>
+    </StyledWrapper>
+  </Fragment>
 )
 
 export default IndexPage
